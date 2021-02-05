@@ -1,0 +1,45 @@
+<div class="quizze d-flex justify-content-center align-items-center">
+    <!-- before clicking start button -->
+    <div class="quizze-container col-10 col-md-8 m-auto" *ngIf="!clickedOnStart">
+        <div class="quizze-header">
+            <a routerLink="/">Main Page</a>
+        </div>
+        <button (click)="onclickStart()" class="start">Start</button>
+    </div>
+    <!-- after clicking start button -->
+    <div class="quizze-container col-10 col-md-8 m-auto" *ngIf="clickedOnStart "
+        [ngStyle]="{backgroundColor:showResult?'#CC9F86':'none'}">
+        <div class="quizze-header">
+            <a routerLink="/">Main Page</a>
+            <p class="score">
+                <span class="category">Category: ({{question.category}})</span> score: {{score}}
+            </p>
+        </div>
+        <div class="question-answer-container" *ngIf="!showResult">
+            <div class="question-container d-flex justify-content-center align-items-center">
+                <p>{{question.question | decodeCharacters}}</p>
+            </div>
+            <div class="answers-container">
+                <div class="row">
+                    <p (click)="selectedElement(3)" [style.order]="randomPosition"
+                        [ngClass]="{correct: nextBtnClickCounter == 1}" appSelectAnswer class="answer answer3">
+                        {{question.correct_answer | decodeCharacters }}
+                    </p>
+                    <p (click)='selectedElement(i)' appSelectAnswer class="answer answer{{i}}"
+                        [ngClass]="{incorrect: nextBtnClickCounter == 1}"
+                        *ngFor='let item of question.incorrect_answers; let i = index'>
+                        {{item | decodeCharacters }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="after-last-question" *ngIf="showResult">
+            <p>Your Score is: {{score}}</p>
+            <button (click)="restart()">Start Again</button>
+        </div>
+    </div>
+    <div class="button-container col-10 col-md-8 m-auto d-flex justify-content-center align-items-center"
+        *ngIf="clickedOnStart && !showResult">
+        <button (click)='nextBtn()'> {{nextBtnText}} </button>
+    </div>
+</div>

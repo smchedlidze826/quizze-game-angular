@@ -1,0 +1,53 @@
+.error{
+    color: rgb(250, 250, 250);
+    display: block;
+    text-align: center;
+    background-color: #E60023;
+}
+.main-container {
+    margin-top: 100px!important;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4)!important;
+    padding: 2rem 1rem 4rem;
+}
+
+
+
+.label,.form,option{
+    color:rgba(37, 14, 167, 0.85) ;
+}
+.form{
+    width: 100%;
+    min-height: 40px;
+    border:1px solid rgba(31, 41, 128, 0.075);
+    border-bottom: 2px solid rgb(12, 27, 165);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.form:focus{
+    outline: none;
+    
+}
+.form:hover{
+    border-bottom: 3px solid rgb(12, 27, 165);
+}
+a {
+    text-decoration: none;
+}
+button{
+    background-color: rgba(37, 14, 167, 0.85) ;
+    color: white;
+    letter-spacing: 2px;
+    text-decoration: none;
+    width: 100%;
+    padding: .4rem 0;
+    border-radius: 5px;
+}
+    
+button:hover{
+        background-color: rgba(37, 14, 167, 1) ;
+}
+
+
+
+  

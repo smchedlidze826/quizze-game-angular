@@ -1,0 +1,33 @@
+<div class="main-container col-10 col-md-8 m-auto">
+    <div>
+        <h1 class="error m-auto mb-3" *ngIf="error">Some of the fields are empty</h1>
+    </div>
+    <div class="form-group">
+        <div class="label mb-2">
+            Number of Questions
+        </div>
+        <input type="text" class="form" [(ngModel)]='questions' value="questions">
+    </div>
+    <div class="form-group">
+        <div class="label mb-2">Category</div>
+        <select class="form-select form" [(ngModel)]='categorySelected' aria-label="Default select example">
+            <option *ngFor='let item of category' value='{{item.value}}'>
+                {{item.title}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="label mb-2">
+            Difficulty
+        </div>
+        <select class="form-select form" [(ngModel)]='difficultySelected' value='difficultySelected'
+            aria-label="Default select example">
+            <option *ngFor='let item of difficulty' value='{{item.value}}'>
+                {{item.title}}
+            </option>
+        </select>
+    </div>
+    <a routerLink="/{{ifNotError}}">
+        <button (click)='submit()' class="mt-5">START QUIZZE</button>
+    </a>
+</div>
