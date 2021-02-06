@@ -122,9 +122,7 @@ button{
     text-transform: uppercase;
 }
     
-button:hover{
-        background-color: rgba(37, 14, 167, 1) ;
-}
+button:hover{background-color: rgba(37, 14, 167, 1);}
 
 
 
@@ -141,6 +139,7 @@ p {
 .correct {background: #13DD13!important;}
 
 .incorrect {background: #DD1313!important;}
+
 .after-last-question p{
     color: white;
     font-size: 25px;

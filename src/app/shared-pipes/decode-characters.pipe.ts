@@ -4,19 +4,19 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'decodeCharacters'
 })
 export class DecodeCharactersPipe implements PipeTransform {
-
-  transform(value: string, ...args: unknown[]): any {
-    let f: string
-    let c: string
-    if (value.indexOf('&quot;') > -1 || value.indexOf('&#039;') > -1) {
-      for (let i = 0; i < value.length; i++) {
-        f = value.replace('&quot;', '')
-        c = f.replace('&#039;', "'")
-        value = c
-      }
-      return c
-    } else {
-      return value
+  transform(value: string, ...args: unknown[]) {
+    let finalValue = value;
+    if (finalValue.includes("&quot;")) {
+      finalValue = finalValue.replace(/&quot;/g, "");
     }
+    if (finalValue.includes("&#039;")) {
+      finalValue = finalValue.replace(/&#039;/g, "'");
+    }
+    if (finalValue.includes('&rsquo;')) {
+      finalValue = finalValue.replace(/&rsquo;/g, "")
+    }
+
+    return finalValue;
   }
+
 }
