@@ -28,6 +28,7 @@ export class QuestionsComponent {
     this.clickedOnStart = true
     this.questCollection = this.webworker.questionsCollection
     this.question = this.questCollection[this.index]
+    console.log(this.question)
     this.randomPosition = Math.round(Math.random() * 5)// to randomize correct answer possition after clicking start quizze
   }
 

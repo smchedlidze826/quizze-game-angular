@@ -47,6 +47,7 @@ export class MainPageComponent implements OnInit {
       this.webWorker.getApiData(api).subscribe((response: any) => {
         this.webWorker.questionsCollection = response.results
       })
+      console.log(api)
 
       this.categorySelected = ''
       this.difficultySelected = ''

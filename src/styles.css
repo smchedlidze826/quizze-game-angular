@@ -10,3 +10,7 @@ html, body { height: 100%; }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {background: rgba(37, 14, 167, 1);}
+
+button{
+    border: none;
+}
