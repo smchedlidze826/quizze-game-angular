@@ -31,7 +31,7 @@ export class MainPageComponent implements OnInit {
 
 
   submit() {
-    if (this.categorySelected && this.difficultySelected && this.questions != '') {
+    if (this.questions != '') {
       this.ifNotError = 'quizze-page'
       this.error = false
       // if selected is any
