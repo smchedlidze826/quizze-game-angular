@@ -31,7 +31,8 @@ export class MainPageComponent implements OnInit {
 
 
   submit() {
-    if (this.questions != '') {
+    console.log(this.questions)
+    if (this.questions != '' && this.questions != null) {
       this.ifNotError = 'quizze-page'
       this.error = false
       // if selected is any
@@ -47,11 +48,11 @@ export class MainPageComponent implements OnInit {
       this.webWorker.getApiData(api).subscribe((response: any) => {
         this.webWorker.questionsCollection = response.results
       })
-      console.log(api)
 
       this.categorySelected = 110
       this.difficultySelected = 'any'
       this.questions = '10'
+
     } else {
       this.ifNotError = ''
       this.error = true

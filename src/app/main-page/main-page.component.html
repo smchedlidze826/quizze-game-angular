@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <div class="label mb-2">Category</div>
-        <select class="form-select form" [(ngModel)]='categorySelected' aria-label="Default select example">
+        <select class="form-select form" [(ngModel)]='categorySelected'>
             <option *ngFor='let item of category' value='{{item.value}}'>
                 {{item.title}}
             </option>
@@ -20,8 +20,7 @@
         <div class="label mb-2">
             Difficulty
         </div>
-        <select class="form-select form" [(ngModel)]='difficultySelected' value='difficultySelected'
-            aria-label="Default select example">
+        <select class="form-select form" [(ngModel)]='difficultySelected' value='difficultySelected'>
             <option *ngFor='let item of difficulty' value='{{item.value}}'>
                 {{item.title}}
             </option>

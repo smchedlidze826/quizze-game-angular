@@ -7,7 +7,7 @@
         <button (click)="onclickStart()" class="start">Start</button>
     </div>
     <!-- after clicking start button -->
-    <div class="quizze-container col-10 col-md-8 m-auto" *ngIf="clickedOnStart "
+    <div class="quizze-container col-10 col-md-8 m-auto" *ngIf="clickedOnStart"
         [ngStyle]="{backgroundColor:showResult?'#CC9F86':'none'}">
         <div class="quizze-header">
             <a routerLink="/">Main Page</a>
