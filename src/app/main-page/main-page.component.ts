@@ -13,8 +13,8 @@ import { WebWorkerService } from '../shared-services/webworker.service';
 export class MainPageComponent implements OnInit {
   category: Category[];
   difficulty: Difficulty[];
-  categorySelected: any;
-  difficultySelected: any;
+  categorySelected: number = 110
+  difficultySelected: string = 'any'
   questions: string = '10'
   error: boolean = false;
   ifNotError: string = ''
@@ -49,8 +49,8 @@ export class MainPageComponent implements OnInit {
       })
       console.log(api)
 
-      this.categorySelected = ''
-      this.difficultySelected = ''
+      this.categorySelected = 110
+      this.difficultySelected = 'any'
       this.questions = '10'
     } else {
       this.ifNotError = ''
