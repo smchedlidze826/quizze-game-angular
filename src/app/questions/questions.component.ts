@@ -7,40 +7,29 @@ import { WebWorkerService } from '../shared-services/webworker.service';
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.css']
 })
-export class QuestionsComponent {
+export class QuestionsComponent implements OnInit {
   randomPosition: number;
   questCollection: any;
-  clickedOnStart: boolean = false
-  question: any;
+  quizze: any;
   index: number = 0
   score: number = 0;
   answerSelected: any;
   nextBtnText: string = 'Submit Answer';
-  nextBtnClickCounter: number = 0;
+  nextBtnClickCounter: number;
   showResult: boolean = false
 
   constructor(
     private webworker: WebWorkerService,
     private clickService: ClickService) { }
 
-
-  onclickStart() {
-    this.clickedOnStart = true
+  ngOnInit() {
+    this.nextBtnClickCounter = this.clickService.nextBtnClickCount
     this.questCollection = this.webworker.questionsCollection
-    this.question = this.questCollection[this.index]
-    console.log(this.question)
+    this.quizze = this.questCollection[this.index]
     this.randomPosition = Math.round(Math.random() * 5)// to randomize correct answer possition after clicking start quizze
   }
 
-  restart() {
-    this.showResult = false
-    this.clickedOnStart = false
-    this.index = 0
-    this.score = 0
-    this.nextBtnClickCounter = 0
-    this.clickService.nextBtnClickCount = 0
-    this.nextBtnText = 'Submit Answer';
-  }
+
 
   nextBtn() {
     // 1 click ==  showResults
@@ -54,13 +43,13 @@ export class QuestionsComponent {
       if (this.questCollection.length - 1 > this.index) {
         this.nextBtnText = 'Next Question'
       } else {
-        this.showResult = true
         this.nextBtnText = 'Show Results'
+        this.showResult = true
       }
     } else { // after nextBtn was clicked 
       if (this.questCollection.length - 1 >= this.index) {
         this.index++
-        this.question = this.questCollection[this.index]
+        this.quizze = this.questCollection[this.index]
       }
       this.answerSelected = ''
       this.randomPosition = Math.round(Math.random() * 5)// to randomize correct answer possition after clicking next btn
@@ -68,6 +57,16 @@ export class QuestionsComponent {
       this.nextBtnText = 'Submit Answer'
     }
     this.nextBtnClickCounter = this.clickService.nextBtnClickCount
+  }
+
+  restart() {
+    this.showResult = false
+    console.log(this.showResult)
+    this.index = 0
+    this.score = 0
+    this.clickService.nextBtnClickCount = 0
+    this.nextBtnClickCounter = this.clickService.nextBtnClickCount
+    this.nextBtnText = 'Submit Answer';
   }
 
   selectedElement(index) {

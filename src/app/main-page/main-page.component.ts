@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Category } from '../shared-models/category.model';
 import { Difficulty } from '../shared-models/dificulty.model';
-import { CategoryService } from '../shared-services/category.service';
-import { DifficultyService } from '../shared-services/difficulty.service';
+
+import { Collections } from '../shared-services/collections.service';
 import { WebWorkerService } from '../shared-services/webworker.service';
 
 @Component({
@@ -10,53 +12,55 @@ import { WebWorkerService } from '../shared-services/webworker.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+
+export class MainPageComponent implements OnInit, DoCheck {
+  @ViewChild('f', { static: false }) form: NgForm;
+
   category: Category[];
   difficulty: Difficulty[];
   categorySelected: number = 110
   difficultySelected: string = 'any'
   questions: string = '10'
-  error: boolean = false;
-  ifNotError: string = ''
+  questionsAreGenerated: boolean;
+
 
   constructor(
-    private categoryService: CategoryService,
-    private difficultyService: DifficultyService,
-    private webWorker: WebWorkerService) { }
+    private collections: Collections,
+    private webWorker: WebWorkerService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    this.category = this.categoryService.category;
-    this.difficulty = this.difficultyService.difficulty;
+    this.category = this.collections.category;
+    this.difficulty = this.collections.difficulty;
+    this.questionsAreGenerated = false
   }
 
 
-  submit() {
-    console.log(this.questions)
-    if (this.questions != '' && this.questions != null) {
-      this.ifNotError = 'quizze-page'
-      this.error = false
+  onSubmit() {
+    if (this.form.valid) {
       // if selected is any
       let api = `https://opentdb.com/api.php?amount=${this.questions}`
       // if option 'any category' was not selected
-      if (this.categorySelected != 110) {
+      if (this.form.value.category != 110) {
         api += `&category=${this.categorySelected}`
       }
       // if option 'any difficulty' was not selected 
-      if (this.difficultySelected != 'any') {
+      if (this.form.value.difficulty != 'any') {
         api += `&difficulty=${this.difficultySelected}`
       }
-      this.webWorker.getApiData(api).subscribe((response: any) => {
-        this.webWorker.questionsCollection = response.results
-      })
-
-      this.categorySelected = 110
-      this.difficultySelected = 'any'
-      this.questions = '10'
-
-    } else {
-      this.ifNotError = ''
-      this.error = true
+      this.webWorker.getApiData(api)
+        .subscribe((response: any) => {
+          this.webWorker.questionsCollection = response.results
+        })
     }
   }
+
+  ngDoCheck() {
+    let questionsArr = this.webWorker.questionsCollection
+    if (questionsArr && this.questionsAreGenerated && this.form.valid) {
+      this.router.navigate(['/quizze-page'])
+    }
+  }
+
 }
 

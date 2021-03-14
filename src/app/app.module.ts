@@ -13,6 +13,10 @@ import { QuestionsComponent } from './questions/questions.component';
 import { SelectAnswerDirective } from './shared-directives/select-answer.directive';
 import { DecodeCharactersPipe } from './shared-pipes/decode-characters.pipe';
 
+import { MatButtonModule } from '@angular/material/button';
+import { Collections } from './shared-services/collections.service';
+
+
 
 @NgModule({
   declarations: [
@@ -27,9 +31,10 @@ import { DecodeCharactersPipe } from './shared-pipes/decode-characters.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
-  providers: [WebWorkerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
