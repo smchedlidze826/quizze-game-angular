@@ -5,6 +5,7 @@ import { Category } from '../shared-models/category.model';
 import { Difficulty } from '../shared-models/dificulty.model';
 
 import { Collections } from '../shared-services/collections.service';
+import { ClickService } from '../shared-services/handle-clicks.service';
 import { WebWorkerService } from '../shared-services/webworker.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class MainPageComponent implements OnInit, DoCheck {
   constructor(
     private collections: Collections,
     private webWorker: WebWorkerService,
+    private clickService: ClickService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class MainPageComponent implements OnInit, DoCheck {
 
 
   onSubmit() {
+    this.clickService.nextBtnClickCount = 0
     if (this.form.valid) {
       // if selected is any
       let api = `https://opentdb.com/api.php?amount=${this.questions}`
