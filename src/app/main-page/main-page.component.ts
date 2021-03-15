@@ -18,9 +18,9 @@ export class MainPageComponent implements OnInit, DoCheck {
 
   category: Category[];
   difficulty: Difficulty[];
-  categorySelected: number = 110
-  difficultySelected: string = 'any'
-  questions: string = '10'
+  categorySelected: number;
+  difficultySelected: string;
+  questions: string;
   questionsAreGenerated: boolean;
 
 
@@ -32,7 +32,10 @@ export class MainPageComponent implements OnInit, DoCheck {
   ngOnInit(): void {
     this.category = this.collections.category;
     this.difficulty = this.collections.difficulty;
-    this.questionsAreGenerated = false
+    this.questionsAreGenerated = false;
+    this.questions = '10';
+    this.categorySelected = 110;
+    this.difficultySelected = 'any';
   }
 
 
@@ -48,14 +51,17 @@ export class MainPageComponent implements OnInit, DoCheck {
       if (this.form.value.difficulty != 'any') {
         api += `&difficulty=${this.difficultySelected}`
       }
+      console.log(api)
       this.webWorker.getApiData(api)
         .subscribe((response: any) => {
           this.webWorker.questionsCollection = response.results
         })
     }
+    this.questionsAreGenerated = true
   }
 
   ngDoCheck() {
+    //check if questionsCollection is ready to run
     let questionsArr = this.webWorker.questionsCollection
     if (questionsArr && this.questionsAreGenerated && this.form.valid) {
       this.router.navigate(['/quizze-page'])

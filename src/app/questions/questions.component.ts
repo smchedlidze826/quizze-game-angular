@@ -12,8 +12,8 @@ export class QuestionsComponent implements OnInit {
   randomPosition: number;
   index: number = 0;
   score: number = 0;
-  questCollection: any;
   quizze: QuizzeQuestion;
+  questCollection: QuizzeQuestion[];
   answerSelected: any;
   nextBtnClickCounter: number;
   showResult: boolean = false
@@ -26,9 +26,9 @@ export class QuestionsComponent implements OnInit {
 
 
   ngOnInit() {
-    this.nextBtnClickCounter = this.clickService.nextBtnClickCount
-    this.questCollection = this.webworker.questionsCollection
-    this.quizze = this.questCollection[this.index]
+    this.nextBtnClickCounter = this.clickService.nextBtnClickCount;
+    this.questCollection = this.webworker.questionsCollection;
+    this.quizze = this.questCollection[this.index];
     this.randomPosition = Math.round(Math.random() * 5)// to randomize correct answer possition after clicking start quizze
   }
 

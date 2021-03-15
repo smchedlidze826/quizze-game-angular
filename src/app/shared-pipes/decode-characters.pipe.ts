@@ -14,6 +14,10 @@ export class DecodeCharactersPipe implements PipeTransform {
       finalValue = finalValue.replace(/&#039;/g, "'");
       finalValue = finalValue.replace(/&rsquo;/g, "'");
     }
+    if (finalValue.includes("&amp;")) {
+      finalValue = finalValue.replace(/&amp;/g, "&");
+    }
+
 
     return finalValue;
   }

@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form (submit)="onSubmit()" #f=ngForm>
+    <form #f=ngForm>
         <div class="form-group">
             <div class="label mb-2">
                 Number of Questions
@@ -28,7 +28,7 @@
                 </option>
             </select>
         </div>
-        <button mat-raised-button color="primary" (click)="questionsAreGenerated = true">
+        <button type="button" mat-raised-button color="primary" (click)="onSubmit()">
             SUBMIT
         </button>
     </form>

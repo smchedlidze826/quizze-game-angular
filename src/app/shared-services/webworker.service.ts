@@ -13,8 +13,9 @@ export class WebWorkerService {
 
   public getApiData(url: string) {
     return this.httpClient.get(url)
-      .pipe(map((response: any) => {
-        return response;
-      }));
+    // .pipe(map((response: any) => {
+    //   console.log(response.results)
+    //   // this.questionsCollection = response
+    // }));
   }
 }
