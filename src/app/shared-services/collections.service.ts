@@ -1,6 +1,19 @@
+import { Injectable } from "@angular/core";
 import { Category } from "../shared-models/category.model";
+import { Difficulty } from "../shared-models/dificulty.model";
 
-export class CategoryService {
+@Injectable({
+    providedIn: 'root'
+})
+
+export class Collections {
+    difficulty: Difficulty[] = [
+        new Difficulty('any', 'Any Difficulty'),
+        new Difficulty('easy', 'easy'),
+        new Difficulty('medium', 'medium'),
+        new Difficulty('hard', 'hard'),
+    ]
+
     category: Category[] = [
         new Category(110, 'Any Category'),
         new Category(9, 'General Knowledge'),
