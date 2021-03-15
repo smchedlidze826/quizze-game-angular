@@ -13,9 +13,6 @@
     margin-top: 30px;
     flex-direction: column;
 }
-a{
-    cursor: pointer;
-}
 
 
 .quizze-container {
@@ -141,7 +138,7 @@ p {
     color: white;
     font-size: 25px;
 }
-/* .after-last-question button{
+.after-last-question button{
     margin-top: 50px;
     font-size: 1.5rem;
     border: 1px solid coral;
@@ -150,7 +147,7 @@ p {
     padding: 1rem 2rem;
     border-radius: 30px;
     text-decoration: none;
-} */
+}
 
 @media only screen and (max-width: 850px) {
     .answers-container .row .answer {

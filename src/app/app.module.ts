@@ -34,7 +34,7 @@ import { Collections } from './shared-services/collections.service';
     HttpClientModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [Collections, WebWorkerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
