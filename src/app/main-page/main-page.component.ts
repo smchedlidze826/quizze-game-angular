@@ -22,8 +22,7 @@ export class MainPageComponent implements OnInit {
   categorySelected: number;
   difficultySelected: string;
   questions: string;
-  // questionsAreGenerated: boolean;
-  // dataLoaded: Promise<boolean>;
+
 
 
   constructor(
@@ -58,21 +57,10 @@ export class MainPageComponent implements OnInit {
       this.webWorker.getApiData(api)
         .subscribe((response: any) => {
           this.webWorker.questionsCollection = response.results
-          // this.dataLoaded = Promise.resolve(true)
-          console.log(response.results)
           this.router.navigate(['/quizze-page'])
         })
     }
-    // this.questionsAreGenerated = true
   }
-
-  // ngDoCheck() {
-  //   //check if questionsCollection is ready to run
-  //   let questionsArr = this.webWorker.questionsCollection
-  //   if (questionsArr && this.questionsAreGenerated && this.form.valid) {
-  //     this.router.navigate(['/quizze-page'])
-  //   }
-  // }
 
 }
 
