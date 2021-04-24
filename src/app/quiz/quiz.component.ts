@@ -35,10 +35,10 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.webworker.getQuizData(api)
         .subscribe(
           (resp: QuizQuestion[]) => {
-            this.webworker.questionsArr = resp
-            this.questionsArr = resp
-            this.questionDataIsLoaded = true
-            this.currentQuestion = this.questionsArr[0]
+            this.webworker.questionsArr = resp;
+            this.questionsArr = resp;
+            this.questionDataIsLoaded = true;
+            this.currentQuestion = this.questionsArr[0];
           }
         )
     }
@@ -48,7 +48,7 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.subs = this.webworker.showAnswersStateChange
       .subscribe(
         (resp: boolean) => {
-          this.showAnswers = resp
+          this.showAnswers = resp;
         }
       )
   }
@@ -61,7 +61,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   }
 
   emittedScore(score: number) {
-    this.score += score
+    this.score += score;
   }
 
   emittedData(data: Test) {
@@ -69,11 +69,11 @@ export class QuizComponent implements OnInit, OnDestroy {
     this.showResult = data.showResult;
     this.score = data.score;
     this.index = data.index;
-    this.currentQuestion = this.webworker.questionsArr[this.index]
+    this.currentQuestion = this.webworker.questionsArr[this.index];
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe()
+    this.subs.unsubscribe();
   }
 
 }

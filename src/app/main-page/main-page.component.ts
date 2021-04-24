@@ -32,16 +32,17 @@ export class MainPageComponent implements OnInit {
   onSubmit() {
     this.errorMsg = false;
     if (this.f.valid) {
-      // if selected is any
+
       let api = `amount=${this.f.value.numberOfQuestions}`
-      // if option 'any category' was not selected
+
       if (this.f.value.category != 'any') {
         api += `&category=${this.categorySelected}`
       }
-      // if option 'any difficulty' was not selected
+
       if (this.f.value.difficulty != 'any') {
         api += `&difficulty=${this.difficultySelected}`
       }
+
       this.router.navigate(['/quiz', { api: api }])
     } else { this.errorMsg = true; }
   }
