@@ -1,0 +1,96 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.spinner ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+    stroke: white;
+}
+
+.quiz-container {
+    min-height: 600px;
+    width: 60%;
+    border: 2px solid white;
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.quiz-header {
+    background: rgba(0, 0, 0, 0.616);
+    padding: 10px;
+    height: 10%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+p {
+    color: white;
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+p a {
+    color: white;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.quiz-body {
+    height: 75%;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 0 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid white;
+    border-radius: 0;
+    background: none!important;
+    font-weight: 300;
+}
+
+button:hover {
+    background: #14a800!important;
+}
+
+button[disabled] {
+    border: 1px solid grey;
+    background: grey;
+    color: grey!important;
+}
+
+button[disabled]:hover {
+    background: none!important;
+}
+
+@media only screen and (max-width: 1100px) {
+    .quiz-container {
+        min-width: 700px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .quiz-container {
+        min-width: 500px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .quiz-container {
+        min-width: 350px;
+    }
+}

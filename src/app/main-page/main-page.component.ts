@@ -1,66 +1,48 @@
-import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Category } from '../shared-models/category.model';
-import { Difficulty } from '../shared-models/dificulty.model';
-
+import { Collection } from './collections.model';
 import { Collections } from '../shared-services/collections.service';
-import { ClickService } from '../shared-services/handle-clicks.service';
-import { WebWorkerService } from '../shared-services/webworker.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-
 export class MainPageComponent implements OnInit {
-  @ViewChild('f', { static: false }) form: NgForm;
+  @ViewChild('f', { static: false }) f: NgForm;
 
-  category: Category[];
-  difficulty: Difficulty[];
-  categorySelected: number;
-  difficultySelected: string;
-  questions: string;
-
-
+  numberOfQuestions: number = 10;
+  categoryArr: Collection[];
+  difficultyArr: Collection[];
+  categorySelected = 'any';
+  difficultySelected = 'any';
+  errorMsg: boolean;
 
   constructor(
-    private collections: Collections,
-    private webWorker: WebWorkerService,
-    private clickService: ClickService,
-    private router: Router) { }
+    private collection: Collections,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    this.category = this.collections.category;
-    this.difficulty = this.collections.difficulty;
-    // this.questionsAreGenerated = false;
-    this.questions = '10';
-    this.categorySelected = 110;
-    this.difficultySelected = 'any';
+    this.categoryArr = this.collection.category;
+    this.difficultyArr = this.collection.difficulty;
   }
-
 
   onSubmit() {
-    this.clickService.nextBtnClickCount = 0
-    if (this.form.valid) {
+    this.errorMsg = false;
+    if (this.f.valid) {
       // if selected is any
-      let api = `https://opentdb.com/api.php?amount=${this.questions}`
+      let api = `amount=${this.f.value.numberOfQuestions}`
       // if option 'any category' was not selected
-      if (this.form.value.category != 110) {
+      if (this.f.value.category != 'any') {
         api += `&category=${this.categorySelected}`
       }
-      // if option 'any difficulty' was not selected 
-      if (this.form.value.difficulty != 'any') {
+      // if option 'any difficulty' was not selected
+      if (this.f.value.difficulty != 'any') {
         api += `&difficulty=${this.difficultySelected}`
       }
-      this.webWorker.getApiData(api)
-        .subscribe((response: any) => {
-          this.webWorker.questionsCollection = response.results
-          this.router.navigate(['/quizze-page'])
-        })
-    }
+      this.router.navigate(['/quiz', { api: api }])
+    } else { this.errorMsg = true; }
   }
-
 }
-

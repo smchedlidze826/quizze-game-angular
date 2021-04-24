@@ -1,18 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-    html, body { height: 100%; }
-
-/* width */
-::-webkit-scrollbar {width: 10px;}
-  
-/* Handle */
-::-webkit-scrollbar-thumb {background: rgba(37, 14, 167, 0.80); }
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {background: rgba(37, 14, 167, 1);}
-
-button{
-    border: none;
+html, body { 
+    height: 100%;
+    background: url(https://woobro.design/thumbnails/42/website-speed-optimisation-vector-illustration-5de242cf65d70.png);
+    background-position: center;
+    background-size: cover;
+    box-sizing: border-box;
 }
-html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

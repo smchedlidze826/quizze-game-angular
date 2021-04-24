@@ -1,0 +1,23 @@
+<div class="container">
+
+    <div class="question-container">
+        <p class="question">{{currentQuestion.question | decode}}</p>
+    </div>
+
+    <div class="answer-container">
+        <ul class="answers">
+
+            <li class="answer{{i}} incorrect " (click)="onClick(i)"
+                *ngFor="let answer of currentQuestion.incorrect_answers; let i = index" [ngClass]="{show: showAnswers}">
+                {{answer | decode}}
+            </li>
+
+            <li class="answer3 correct " (click)="onClick(3)" [ngClass]="{show: showAnswers}"
+                [style.order]="randomPosition">
+                {{currentQuestion.correct_answer | decode}}
+            </li>
+
+        </ul>
+    </div>
+
+</div>

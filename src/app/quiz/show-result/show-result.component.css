@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 500px;
+    margin: auto;
+    color: white;
+}
+
+p {
+    font-size: 20px;
+}
+
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 0 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid white;
+    border-radius: 0;
+    background: none!important;
+    color: white;
+    font-weight: 300;
+}
+
+button:hover {
+    background: #14a800!important;
+}

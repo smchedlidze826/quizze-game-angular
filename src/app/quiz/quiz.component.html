@@ -1,0 +1,33 @@
+<div class="container ">
+
+    <div class="spinner" *ngIf="!questionDataIsLoaded">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="quiz-container" *ngIf="questionDataIsLoaded">
+
+        <div class="quiz-header">
+            <p class="header">
+                <a routerLink="../">Start a New Quiz</a>
+            </p>
+            <p>Category: {{currentQuestion.category}}</p>
+            <p class="small">score: {{score}}</p>
+        </div>
+
+        <div class="quiz-body" *ngIf="!showResult">
+            <app-questions [currentQuestion]="currentQuestion" [randomPosition]="randomPosition" (score)="emittedScore($event)">
+            </app-questions>
+        </div>
+
+        <div class="quiz-body" *ngIf="showResult">
+            <app-show-result [score]="score" (startTheSameTest)="emittedData($event)"></app-show-result>
+        </div>
+
+        <div class="btn-container" *ngIf="!showResult">
+            <button mat-flat-button color="primary" type="button" (click)="onClick()" [disabled]="!showAnswers">
+                Next Question
+            </button>
+        </div>
+
+    </div>
+</div>
