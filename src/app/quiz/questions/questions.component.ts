@@ -32,9 +32,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   onClick(index: number) {
     this.showAnswers = true;
     this.webworker.showAnswersStateChange.next(true);
-    if (index == 3) {
-      this.score.emit(1)
-    }
+    index === 3 ? this.score.emit(1) : console.log('answer was incorrect');
   }
 
   ngOnDestroy() {
